@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Token 预览</title>
+<style>
+  body { font-family: Inter, system-ui, sans-serif; padding: 40px; background: #111827; color: #f9fafb; }
+  h2 { margin-top: 40px; border-bottom: 1px solid #374151; padding-bottom: 8px; }
+  .swatches { display: flex; flex-wrap: wrap; gap: 12px; }
+  .swatch { width: 80px; height: 80px; border-radius: 8px; display: flex; align-items: flex-end; justify-content: center; padding: 6px; font-size: 11px; font-family: monospace; }
+  .spacing-demo { display: flex; align-items: flex-end; gap: 8px; }
+  .spacing-item { background: #3b82f6; }
+  .radius-demo { display: flex; gap: 12px; }
+  .radius-item { width: 80px; height: 80px; background: #3b82f6; display: flex; align-items: center; justify-content: center; font-size: 11px; font-family: monospace; color: white; }
+</style>
+</head>
+<body>
+<h1>🎨 Design Token 预览</h1>
+
+<h2>色板 — Primary</h2>
+<div class="swatches">
+  <div class="swatch" style="background:#eff6ff; color:#111;">50<br>#eff6ff</div>
+  <div class="swatch" style="background:#3b82f6; color:white;">500<br>#3b82f6</div>
+  <div class="swatch" style="background:#1e3a5f; color:white;">900<br>#1e3a5f</div>
+</div>
+
+<h2>色板 — Accent</h2>
+<div class="swatches">
+  <div class="swatch" style="background:#10b981; color:white;">green<br>#10b981</div>
+  <div class="swatch" style="background:#ef4444; color:white;">red<br>#ef4444</div>
+  <div class="swatch" style="background:#f59e0b; color:#111;">amber<br>#f59e0b</div>
+</div>
+
+<h2>间距</h2>
+<div class="spacing-demo">
+  <div class="spacing-item" style="width:4px;height:4px;"></div>
+  <div class="spacing-item" style="width:8px;height:8px;"></div>
+  <div class="spacing-item" style="width:16px;height:16px;"></div>
+  <div class="spacing-item" style="width:24px;height:24px;"></div>
+  <div class="spacing-item" style="width:32px;height:32px;"></div>
+  <div class="spacing-item" style="width:48px;height:48px;"></div>
+</div>
+<p>xs / sm / md / lg / xl / 2xl</p>
+
+<h2>圆角</h2>
+<div class="radius-demo">
+  <div class="radius-item" style="border-radius:4px;">sm</div>
+  <div class="radius-item" style="border-radius:8px;">md</div>
+  <div class="radius-item" style="border-radius:12px;">lg</div>
+  <div class="radius-item" style="border-radius:9999px;">full</div>
+</div>
+
+<h2>字体大小</h2>
+<p style="font-size:0.875rem;">sm — The quick brown fox (0.875rem)</p>
+<p style="font-size:1rem;">base — The quick brown fox (1rem)</p>
+<p style="font-size:1.125rem;">lg — The quick brown fox (1.125rem)</p>
+<p style="font-size:1.25rem;">xl — The quick brown fox (1.25rem)</p>
+<p style="font-size:1.5rem;">2xl — The quick brown fox (1.5rem)</p>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<h2>整体架构：你负责的部分 vs 现成的部分</h2>
+<p class="subtitle">离职状态下的最小可行 Agent 系统</p>
+
+<div class="mockup">
+  <div class="mockup-header">Agent 体验架构师 — 系统分层</div>
+  <div class="mockup-body" style="padding: 24px;">
+    <div style="background: #1a1a2e; color: #e0e0e0; border-radius: 12px; padding: 20px; font-family: monospace; font-size: 14px; line-height: 1.8;">
+      <div style="padding:12px 16px; background:#2d2d44; border-radius:8px; margin-bottom:12px; border-left:3px solid #7c3aed;">
+        <strong>🎨 前端层</strong> <span style="color:#888;font-size:12px">← 你主攻</span><br/>
+        Agent 交互界面 · HITL 审批 · 推理过程可视化 · 工作流状态面板
+      </div>
+      <div style="display:flex; justify-content:center; padding:8px 0; color:#666;">↕ API / WebSocket / SSE</div>
+      <div style="padding:12px 16px; background:#2d2d44; border-radius:8px; margin-bottom:12px; border-left:3px solid #2563eb;">
+        <strong>🔌 MCP 工具层</strong> <span style="color:#888;font-size:12px">← 你构建</span><br/>
+        Node.js/TS MCP Servers · 自定义工具 · 数据资源 · Prompt 模板
+      </div>
+      <div style="display:flex; justify-content:center; padding:8px 0; color:#666;">↕ MCP 协议</div>
+      <div style="padding:12px 16px; background:#2d2d44; border-radius:8px; border-left:3px solid #059669;">
+        <strong>🧠 Agent 推理层</strong> <span style="color:#888;font-size:12px">← 现成的</span><br/>
+        Claude API / OpenAI API · 工具调用 · 上下文管理 · 推理链
+      </div>
+      <div style="display:flex; justify-content:center; padding:8px 0; color:#666;">↕ LLM 推理</div>
+      <div style="padding:12px 16px; background:#1a1a2e; border-radius:8px; opacity:0.5;">
+        <strong>☁️ 模型层</strong> <span style="color:#888;font-size:12px">← 不用管</span><br/>
+        Claude / GPT 等大语言模型
+      </div>
+    </div>
+    <p style="margin-top:16px;font-size:14px;color:#888;">你负责 <strong>上面两层</strong>（前端 + MCP），下面两层直接用 API。这样不依赖任何团队后端。</p>
+  </div>
+</div>
+
+<div style="margin-top: 24px;">
+  <h3>关键设计决策</h3>
+  
+  <div class="section">
+    <p><strong>为什么 MCP 而不是自己搭 Agent 后端？</strong></p>
+    <p>MCP 是标准协议，Codex、Claude Desktop 等客户端已经实现了工具调用和上下文管理。你只需要写 Server 暴露工具，不用管 agent 怎么调度、上下文怎么管理。这部分复杂度先外包给现成客户端。</p>
+  </div>
+
+  <div class="section">
+    <p><strong>为什么 Node.js/TS 而不是 Python？</strong></p>
+    <p>MCP 官方 TypeScript SDK 很成熟，你的 Node.js 背景直接用。前端和 Server 用同一语言，认知负担最小。</p>
+  </div>
+
+  <div class="section">
+    <p><strong>API 成本？</strong></p>
+    <p>Claude API 和 OpenAI API 按 token 计费。开发测试阶段用量很小，一个月几十块够用。后期做产品才需要考虑成本治理（那是 Autonomous Optimization Architect 的事了）。</p>
+  </div>
+</div>
