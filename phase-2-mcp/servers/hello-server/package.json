@@ -1,0 +1,9 @@
+{
+  "name": "hello-mcp-server",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0",
+    "zod": "^3"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "phase-2-mcp",
+  "private": true,
+  "scripts": {
+    "server:hello": "cd servers/hello-server && npx tsx index.ts",
+    "server:weather": "cd servers/weather-server && npx tsx index.ts",
+    "server:file-search": "cd servers/file-search-server && npx tsx index.ts",
+    "dashboard:dev": "cd dashboard && npm run dev"
+  },
+  "devDependencies": { "typescript": "^5", "@types/node": "^20" }
+}
