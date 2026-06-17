@@ -1,11 +1,11 @@
 import OpenAI from "openai";
-import { config } from "./config";
+import { appConfig } from "./config";
 
-const openai = new OpenAI({ apiKey: config.openai.apiKey });
+const openai = new OpenAI({ apiKey: appConfig.providers.openai.apiKey });
 
 async function chat(prompt: string) {
   const response = await openai.chat.completions.create({
-    model: config.openai.model,
+    model: appConfig.providers.openai.model,
     messages: [{ role: "user", content: prompt }],
   });
   return response.choices[0].message.content;

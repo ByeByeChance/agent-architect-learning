@@ -1,11 +1,11 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { config } from "./config";
+import { appConfig } from "./config";
 
-const anthropic = new Anthropic({ apiKey: config.anthropic.apiKey });
+const anthropic = new Anthropic({ apiKey: appConfig.providers.anthropic.apiKey });
 
 async function chat(prompt: string) {
   const response = await anthropic.messages.create({
-    model: config.anthropic.model,
+    model: appConfig.providers.anthropic.model,
     max_tokens: 500,
     messages: [{ role: "user", content: prompt }],
   });

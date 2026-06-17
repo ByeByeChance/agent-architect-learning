@@ -1,9 +1,13 @@
 # Transformer 与 Attention 机制
 
 > 阅读材料：
-> 1. Jay Alammar: "The Illustrated Transformer" (https://jalammar.github.io/illustrated-transformer/)
-> 2. 3Blue1Brown: "Attention in transformers, visually explained" (YouTube)
-> 3. "Attention Is All You Need" 论文 Figure 1 和摘要
+> 1. 图解 Transformer（中文，30 分钟）
+>    https://jalammar.github.io/illustrated-transformer/
+> 2. 3Blue1Brown 视频：Attention 可视化讲解（前 15 分钟，中文字幕）
+>    B 站：https://www.bilibili.com/video/BV1TZ421j7Bd
+>    YouTube：https://www.youtube.com/watch?v=eMlx5fFNoYc
+> 3. "Attention Is All You Need" 论文
+>    https://arxiv.org/abs/1706.03762
 
 ## 1. 为什么要有 Attention？
 

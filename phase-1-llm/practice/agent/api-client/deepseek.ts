@@ -1,14 +1,14 @@
 import OpenAI from "openai";
-import { config } from "./config";
+import { appConfig } from "./config";
 
 const deepseek = new OpenAI({
-  apiKey: config.deepseek.apiKey,
-  baseURL: config.deepseek.baseURL,
+  apiKey: appConfig.providers.deepseek.apiKey,
+  baseURL: appConfig.providers.deepseek.baseURL,
 });
 
 async function chat(prompt: string) {
   const response = await deepseek.chat.completions.create({
-    model: config.deepseek.model,
+    model: appConfig.providers.deepseek.model,
     messages: [{ role: "user", content: prompt }],
   });
   return response.choices[0].message.content;

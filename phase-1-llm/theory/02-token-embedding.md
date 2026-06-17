@@ -1,6 +1,7 @@
 # Token 与 Embedding
 
 > 实验工具：https://tiktokenizer.vercel.app/
+> 补充阅读：OpenAI Tokenizer 文档 https://platform.openai.com/tokenizer
 
 ## 1. 什么是 Token？
 

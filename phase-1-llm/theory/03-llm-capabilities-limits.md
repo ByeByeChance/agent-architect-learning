@@ -1,6 +1,8 @@
 # LLM 的能力与边界
 
-> 阅读：GPT-4 Technical Report 摘要、Claude Model Card
+> 阅读：
+> - GPT-4 Technical Report: https://arxiv.org/abs/2303.08774
+> - Anthropic Model Card: https://docs.anthropic.com/en/docs/about-claude/models
 
 ## 1. LLM 擅长什么？
 
