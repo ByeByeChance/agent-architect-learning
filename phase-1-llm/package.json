@@ -3,20 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "agent:deepseek": "tsx practice/agent/api-client/deepseek.ts",
     "agent:openai": "tsx practice/agent/api-client/openai.ts",
     "agent:anthropic": "tsx practice/agent/api-client/anthropic.ts",
     "agent:prompt-test": "tsx practice/agent/prompt-lab/prompt-test.ts",
     "agent:tools": "tsx practice/agent/function-calling/tool-runner.ts",
     "agent:temp": "tsx practice/agent/experiments/temperature-exploration.ts"
   },
-  "devDependencies": {
-    "@types/node": "^20",
-    "tsx": "^4",
-    "typescript": "^5"
-  },
-  "dependencies": {
-    "openai": "^4",
-    "@anthropic-ai/sdk": "^0.30",
-    "dotenv": "^16"
-  }
+  "devDependencies": { "@types/node": "^20", "tsx": "^4", "typescript": "^5" },
+  "dependencies": { "openai": "^4", "@anthropic-ai/sdk": "^0.30", "dotenv": "^16" }
 }

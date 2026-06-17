@@ -1,6 +1,11 @@
 import "dotenv/config";
 
 export const config = {
+  deepseek: {
+    apiKey: process.env.DEEPSEEK_API_KEY!,
+    model: "deepseek-chat",
+    baseURL: "https://api.deepseek.com",
+  },
   openai: {
     apiKey: process.env.OPENAI_API_KEY!,
     model: "gpt-4o-mini",
@@ -11,7 +16,8 @@ export const config = {
   },
 } as const;
 
-if (!config.openai.apiKey && !config.anthropic.apiKey) {
-  console.error("❌ 至少配置一个 API Key (OPENAI_API_KEY 或 ANTHROPIC_API_KEY)");
+const anyKey = config.deepseek.apiKey || config.openai.apiKey || config.anthropic.apiKey;
+if (!anyKey) {
+  console.error("❌ 至少配置一个 API Key (DEEPSEEK_API_KEY / OPENAI_API_KEY / ANTHROPIC_API_KEY)");
   process.exit(1);
 }
