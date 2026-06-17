@@ -32,3 +32,36 @@
 - MCP 协议本质：Tool/Resource/Prompt 三个概念怎么落地
 - TypeScript 写完整 MCP Server
 - Prompt 工程化：版本管理、回归测试、多模型对比
+
+---
+
+## 2026-06-18 — 阶段 2 完成
+
+### 产出物
+
+| 文件 | 内容 |
+|---|---|
+| theory/01-mcp-protocol.md | MCP 协议规范、JSON-RPC、Tool/Resource/Prompt |
+| theory/02-mcp-security-transport.md | Stdio/SSE/Streamable HTTP、安全模型 |
+| servers/hello-server/index.ts | 最简 MCP Server（hello + echo tool） |
+| servers/weather-server/index.ts | Tool + Resource 协作、错误处理 |
+| servers/file-search-server/index.ts | 递归文件搜索、环境变量权限控制 |
+| dashboard/ | React 三 Tab 调试面板（Servers/Tools/Chat） |
+| research/mcp-transport-analysis.md | Stdio/SSE 源码分析 |
+| research/mcp-vs-openai-tools.md | MCP 与 OpenAI Tools 对照 |
+| research/source-code-walkthrough.md | 完整源码逐行走读 |
+
+### 学到的 3 件最重要的事
+
+1. **MCP 是 AI 世界的 USB 协议**——Server 只管提供工具，Client 只管发现和调用，中间的 JSON-RPC 保证互操作性
+2. **Tool 是动作，Resource 是数据**——这个区分看似简单，但决定了一个 MCP Server 的设计质量
+3. **Agent 调试面板的三个视角**——管理面（Servers）、数据面（Tool Calls）、交互面（Chat），缺一不可
+
+### 还不清楚的 3 个问题
+1. MCP Client 怎么实现？怎么从 React 面板发起真实的 tools/list 和 tools/call？
+2. SSE Transport 怎么在 Dashboard 中实际落地？
+3. 多个 MCP Server 同时运行时，Agent 怎么决定调用哪个 Server 的哪个 tool？
+
+### 阶段 3 重点关注
+- Prompt Engineering 深入：测试套件、版本化管理、多模型对比
+- 阶段 1 已有了基础，阶段 3 是把 Prompt 当软件产品来管理

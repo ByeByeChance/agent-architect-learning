@@ -8,7 +8,7 @@
 | 阶段 | 名称 | 状态 |
 |---|---|---|
 | 1 | LLM 基础认知 | ✅ 已完成 |
-| 2 | Prompt Engineering 深入 | ⬜ 未开始 |
+| 2 | Prompt Engineering 深入 | ✅ 已完成 |
 | 3 | MCP 协议与工具构建 | ⬜ 未开始 |
 | 4 | Agent 记忆与 RAG | ⬜ 未开始 |
 | 5 | 多 Agent 架构 | ⬜ 未开始 |
