@@ -1,15 +1,19 @@
-import OpenAI from "openai";
-import "dotenv/config";
+import { createChatClient, appConfig } from "../api-client/config";
 import { weatherTool, getWeather } from "./weather-tool";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
+const ai = createChatClient();
 
 async function main() {
-  const userMessage = "北京和上海的天气怎么样？";
+  console.log(`🔧 Provider: ${appConfig.provider} | Query: "${appConfig.toolCall.query}"\n`);
 
-  const response = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
-    messages: [{ role: "user", content: userMessage }],
+  if (ai.type !== "openai-compatible") {
+    console.log("Function Calling 仅支持 OpenAI 兼容 API (DeepSeek/OpenAI)");
+    return;
+  }
+
+  const response = await ai.client.chat.completions.create({
+    model: ai.model,
+    messages: [{ role: "user", content: appConfig.toolCall.query }],
     tools: [weatherTool],
   });
 
@@ -32,16 +36,18 @@ async function main() {
       });
     }
 
-    const finalResponse = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+    const finalResponse = await ai.client.chat.completions.create({
+      model: ai.model,
       messages: [
-        { role: "user", content: userMessage },
+        { role: "user", content: appConfig.toolCall.query },
         choice.message,
         ...toolMessages,
       ],
     });
 
     console.log("🤖 最终回答:", finalResponse.choices[0].message.content);
+  } else {
+    console.log("ℹ️ 模型未调用工具，直接回答:", choice.message.content);
   }
 }
 

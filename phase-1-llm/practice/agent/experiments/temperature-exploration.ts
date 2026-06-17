@@ -1,33 +1,31 @@
-import OpenAI from "openai";
-import "dotenv/config";
+import { createChatClient, appConfig } from "../api-client/config";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
-
-const PROMPT = "用一句话描述'春天'的感觉。";
-const TEMPERATURES = [0, 0.3, 0.7, 1.0, 1.5];
-
-async function testTemperature(temp: number) {
-  const responses: string[] = [];
-  for (let i = 0; i < 3; i++) {
-    const res = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [{ role: "user", content: PROMPT }],
-      temperature: temp,
-    });
-    responses.push(res.choices[0].message.content!);
-  }
-  return responses;
-}
+const ai = createChatClient();
 
 async function main() {
-  console.log(`🔬 Temperature 实验: "${PROMPT}"\n`);
+  console.log(`🔬 Provider: ${appConfig.provider} | Model: ${ai.model}\n`);
+  console.log(`   Prompt: "${appConfig.experiment.prompt}"\n`);
 
-  for (const temp of TEMPERATURES) {
+  for (const temp of appConfig.experiment.temperatures) {
     console.log(`--- Temperature = ${temp} ---`);
-    const results = await testTemperature(temp);
-    results.forEach((r, i) => console.log(`  第${i + 1}次: ${r}`));
-    const unique = new Set(results).size;
-    console.log(`  多样性: ${unique}/3 种不同回答\n`);
+    const responses: string[] = [];
+    for (let i = 0; i < appConfig.experiment.runsPerTemp; i++) {
+      // DeepSeek/OpenAI 兼容方式
+      if (ai.type === "openai-compatible") {
+        const res = await ai.client.chat.completions.create({
+          model: ai.model,
+          messages: [{ role: "user", content: appConfig.experiment.prompt }],
+          temperature: temp,
+        });
+        responses.push(res.choices[0].message.content!);
+      } else {
+        const text = await ai.chat(appConfig.experiment.prompt);
+        responses.push(text!);
+      }
+    }
+    responses.forEach((r, i) => console.log(`  第${i + 1}次: ${r}`));
+    const unique = new Set(responses).size;
+    console.log(`  多样性: ${unique}/${appConfig.experiment.runsPerTemp}\n`);
   }
 }
 
