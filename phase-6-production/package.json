@@ -1,0 +1,24 @@
+{
+  "name": "phase-6-production",
+  "version": "1.0.0",
+  "description": "Phase 6 — Agent 产品化与治理: cost governance, trust & safety, production deployment",
+  "type": "module",
+  "scripts": {
+    "cost-tracker": "npx tsx practice/cost-tracker/index.ts",
+    "trust-engine": "npx tsx practice/trust-engine/index.ts",
+    "circuit-breaker": "npx tsx practice/circuit-breaker/index.ts",
+    "production-guardian": "npx tsx practice/production-guardian/index.ts",
+    "dashboard": "cd frontend/production-dashboard && npx vite --port 5500"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "dotenv": "^17.4.2",
+    "openai": "^4.73.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

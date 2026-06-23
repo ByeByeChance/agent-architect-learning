@@ -1,0 +1,25 @@
+{
+  "name": "phase-5-multi-agent",
+  "version": "1.0.0",
+  "description": "Phase 5 — Multi-Agent Architecture: orchestration, agent mesh, HITL, context budget",
+  "type": "module",
+  "scripts": {
+    "orchestrator": "npx tsx practice/orchestrator/index.ts",
+    "mesh": "npx tsx practice/agent-mesh/index.ts",
+    "hitl": "npx tsx practice/hitl-gate/index.ts",
+    "budget": "npx tsx practice/context-budget/index.ts",
+    "shared-memory": "npx tsx practice/shared-memory/index.ts",
+    "dashboard": "cd frontend/agent-dashboard && npx vite --port 5400"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "dotenv": "^17.4.2",
+    "openai": "^4.73.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
